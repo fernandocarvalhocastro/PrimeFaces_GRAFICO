@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="_template.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Avaliação do Cliente">
+				<p:chart type="pie"
+					model="#{graficoBean.pizza}"/>
+			</p:panel>
+			<p:panel header="Cliente Mes">
+				<p:chart type="line" model="#{graficoBean.linha}" style="width:500px;height:300px;margin:auto"/>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+</html>

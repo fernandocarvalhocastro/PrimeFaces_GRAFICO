@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="_template.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Lista de Cliente">
+				<h:form>
+					<h:panelGrid columns="3">
+						<p:outputLabel value="Nome" for="nome"/>
+						<p:autoComplete
+							completeMethod="#{listaClienteBean.completar}" 						
+							value="#{listaClienteBean.nome}" id="nome"/>
+						<p:commandButton value="Buscar" 
+							update="tabela"
+							action="#{listaClienteBean.buscar}"/>	
+					</h:panelGrid>
+				</h:form>
+				<p:growl autoUpdate="true"/>
+				<p:dataTable id="tabela"
+					paginator="true" rows="3" 
+					paginatorPosition="bottom"
+					value="#{listaClienteBean.lista}" var="c">
+					<p:column headerText="Nome">
+						#{c.nome}
+					</p:column>
+					<p:column headerText="Data Nascimento">
+						<h:outputText value="#{c.dataNascimento.time}">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
+					</p:column>
+					<p:column headerText="CPF">
+						#{c.cpf}
+					</p:column>
+					<p:column headerText="Rating">
+						<p:rating value="#{c.rating}" readonly="true"/>
+					</p:column>
+					<p:column>
+						<p:commandButton action="cliente" icon="ui-icon-pencil">
+							<f:setPropertyActionListener 
+								value="#{c}" target="#{clienteBean.cliente}" />
+						</p:commandButton>
+						<p:commandButton onclick="PF('confirmacao').show()"
+								icon="ui-icon-trash" >
+							<f:setPropertyActionListener value="#{c.codigo}" 
+								target="#{listaClienteBean.codigo}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog message="Deseja excluir?" 
+					header="Confirme" widgetVar="confirmacao">
+					<p:commandButton action="#{listaClienteBean.remover}"
+						update="tabela" value="Sim"
+						oncomplete="PF('confirmacao').hide()"/>
+					<p:commandButton value="Não" 
+						onclick="PF('confirmacao').hide()"/>	
+				</p:confirmDialog>
+			</p:panel>
+		</ui:define>
+	</ui:composition>
+	
+	
+	
+	
+</html>
+
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="_template.xhtml">
+		<ui:define name="conteudo">
+			<p:panel header="Cadastro de Cliente"
+				toggleable="true">
+				<h:form>
+					<p:messages/>
+					<p:growl/>
+					<h:inputHidden value="#{clienteBean.cliente.codigo}" />
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Nome" for="nome"/>
+						<p:inputText value="#{clienteBean.cliente.nome}" id="nome"/>
+									
+						<p:outputLabel value="Data Nascimento" for="dt"/>
+						<p:calendar pattern="dd/MM/yyyy"
+							 value="#{clienteBean.cliente.dataNascimento.time}" id="dt"/>
+						
+						<p:outputLabel value="CPF" for="cpf"/>
+						<p:inputMask mask="999.999.999-99" id="cpf" value="#{clienteBean.cliente.cpf}"/>
+						
+						<p:outputLabel value="Rating" for="rating"/>
+						<p:rating id="rating" value="#{clienteBean.cliente.rating}"/>
+									
+						<p:commandButton value="Gravar" action="#{clienteBean.cadastrar()}"/>			
+					</h:panelGrid>
+				</h:form>
+			</p:panel>	
+		</ui:define>
+	</ui:composition>
+</html>
+
