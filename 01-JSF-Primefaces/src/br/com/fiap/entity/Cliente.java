@@ -23,6 +23,8 @@ public class Cliente {
 	private Calendar dataNascimento;
 	
 	private int rating;
+	
+	private String foto;
 
 	public int getCodigo() {
 		return codigo;
@@ -62,6 +64,14 @@ public class Cliente {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 	
 }
