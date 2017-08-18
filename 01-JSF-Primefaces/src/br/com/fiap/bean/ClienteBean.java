@@ -33,7 +33,7 @@ public class ClienteBean {
 		cliente = new Cliente();
 		cliente.setDataNascimento(Calendar.getInstance());
 		bo = new ClienteBO();
-		foto = getFoto();
+		
 	}
 	
 	public StreamedContent getFoto(){
@@ -63,7 +63,6 @@ public class ClienteBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		foto = getFoto();
 	}
 
 	public String cadastrar() {
